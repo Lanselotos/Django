@@ -1,14 +1,12 @@
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
+from django.http import HttpResponse, Http404, FileResponse, JsonResponse
 from django.urls import reverse
-
+from django.template.loader import get_template
+from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-
 from .models import Product
 
-
-
 def index(request):
-    return HttpResponse('Hello World')
+    return render(request, 'index.html')
 
 def page(request, page_num):
     return HttpResponse(f'Page {page_num}')   
@@ -20,4 +18,8 @@ def about(request, id):
     except Product.DoesNotExist:
         raise Http404('NOT FOUND')    
    
-    return HttpResponse ("OK")          
+    return HttpResponse ("OK") 
+
+def json_show(request):
+    data = {'cost':14, 'title':'bok'}
+    return JsonResponse(data)      
