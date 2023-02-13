@@ -1,13 +1,13 @@
 {% extends 'web_lib/main.html' %}
 
 {% block content %}
+<div class="container">
     <h1> Books </h1>
-    <div>
         {% if books%}
             {% for book in books %}
-                <p>{{book.title}}</p>
-                <p>{{book.description}}</p>
-                <p>{{book.published|date:'DATE_FORMAT'}}</p>
+                <p>title: {{book.title}}</p>
+                <p>description: {{book.description}}</p>
+                <p>date: {{book.published|date:'DATE_FORMAT'}}</p>
                 <hr>
             {% endfor %}
         {% else %}
